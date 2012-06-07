@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mono.CodeContracts.Static.Inference\Interface\IBoxedExpressionController.cs">
+    <Files>
+      <File FileName="Mono.CodeContracts.Static.Proving\BoxedExpression.cs" Line="41" Column="44" />
+      <File FileName="Mono.CodeContracts.Static.Proving\BoxedExpressionExtensions.cs" Line="1" Column="1" />
+      <File FileName="IBoxedExpressionController.cs" Line="22" Column="72" />
+      <File FileName="Mono.CodeContracts.Static.Inference\OverflowExpression.cs" Line="3" Column="46" />
+      <File FileName="Mono.CodeContracts.Static.Inference\Interface\IBoxedExpressionController.cs" Line="8" Column="49" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

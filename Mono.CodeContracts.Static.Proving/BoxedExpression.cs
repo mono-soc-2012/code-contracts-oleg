@@ -38,8 +38,12 @@ using Mono.CodeContracts.Static.Analysis.HeapAnalysis.Paths;
 using Mono.CodeContracts.Static.ControlFlow;
 using Mono.CodeContracts.Static.DataStructures;
 
-namespace Mono.CodeContracts.Static.Proving {
-	internal abstract class BoxedExpression {
+namespace Mono.CodeContracts.Static.Proving 
+{
+	
+	internal abstract class BoxedExpression 
+	{
+		
 		public virtual bool IsVariable
 		{
 			get { return false; }
@@ -235,6 +239,11 @@ namespace Mono.CodeContracts.Static.Proving {
 
 			return new BinaryExpression (bop, Convert (left, decoder), Convert (right, decoder));
 		}
+		
+		public static BoxedExpression Binary(BinaryOperator op, BoxedExpression left, BoxedExpression right, object frameworkVar = null)
+	    {
+	      return (BoxedExpression) new BoxedExpression.BinaryExpression(op, left, right, frameworkVar);
+	    }
 
 		#region Nested type: AssertExpression
 		public class AssertExpression : ContractExpression {
@@ -1684,5 +1693,7 @@ namespace Mono.CodeContracts.Static.Proving {
 			}
 		}
 		#endregion
+		
+		public abstract void Dispatch(IBoxedExpressionController controller);
 	}
 }
