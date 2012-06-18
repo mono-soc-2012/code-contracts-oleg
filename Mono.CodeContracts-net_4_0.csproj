@@ -359,8 +359,14 @@
     <Compile Include="Mono.CodeContracts.Static.Analysis\BinaryOperator.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\IFactForOverflow.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis\UnaryExpression.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Analysis\APC.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Analysis\CFG.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\CortegeForThreeParams.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\FList.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\TypedKeyParametrized.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\LazyEval.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving\FactForOverflow.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\OverflowVisitorBase.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\OverflowVisitor.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\UnderflowVisitor.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
