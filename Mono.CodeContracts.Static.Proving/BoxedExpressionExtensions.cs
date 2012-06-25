@@ -27,6 +27,7 @@
 // 
 
 using System;
+using Mono.CodeContracts.Static.Analysis;
 
 namespace Mono.CodeContracts.Static.Proving
 {
@@ -84,6 +85,19 @@ namespace Mono.CodeContracts.Static.Proving
 			}
 			value = 0;
 	      	return false;
+		}
+
+		public static BoxedExpression StripIfCastOfArrayLength(this BoxedExpression exp)
+		{
+			UnaryOperator cast;
+      		BoxedExpression casted;
+			if (BoxedExpressionExtensions.IsCastExpression(exp, out cast, out casted) && cast == UnaryOperator.Conv_i4 && casted.AccessPath != null)
+			{
+				PathElement[] pathElementArray = Enumerable.ToArray<PathElement>((IEnumerable<PathElement>) casted.AccessPath);
+				if (pathElementArray.Length >= 2 && pathElementArray[pathElementArray.Length - 1].ToString() == "Length")
+          			return casted;
+			}
+      		return exp;
 		}
 	}
 	

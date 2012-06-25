@@ -25,7 +25,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,109 +32,90 @@ using System.IO;
 using System.Linq;
 using Mono.CodeContracts.Static.AST;
 using Mono.CodeContracts.Static.AST.Visitors;
+using Mono.CodeContracts.Static.Analysis;
 using Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Decoding;
 using Mono.CodeContracts.Static.Analysis.HeapAnalysis.Paths;
 using Mono.CodeContracts.Static.ControlFlow;
 using Mono.CodeContracts.Static.DataStructures;
 
-namespace Mono.CodeContracts.Static.Proving 
+namespace Mono.CodeContracts.Static.Proving
 {
-	
-	internal abstract class BoxedExpression 
+	internal abstract class BoxedExpression
 	{
 		
-		public virtual bool IsVariable
-		{
+		public virtual bool IsVariable {
 			get { return false; }
 		}
 
-		public virtual bool IsBooleanTyped
-		{
+		public virtual bool IsBooleanTyped {
 			get { return false; }
 		}
 
-		public virtual object UnderlyingVariable
-		{
+		public virtual object UnderlyingVariable {
 			get { return false; }
 		}
 
-		public virtual PathElement[] AccessPath
-		{
+		public virtual PathElement[] AccessPath {
 			get { return null; }
 		}
 
-		public virtual bool IsConstant
-		{
+		public virtual bool IsConstant {
 			get { return false; }
 		}
 
-		public virtual object Constant
-		{
+		public virtual object Constant {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual object ConstantType
-		{
+		public virtual object ConstantType {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual bool IsSizeof
-		{
+		public virtual bool IsSizeof {
 			get { return false; }
 		}
 
-		public virtual bool IsUnary
-		{
+		public virtual bool IsUnary {
 			get { return false; }
 		}
 
-		public virtual UnaryOperator UnaryOperator
-		{
+		public virtual UnaryOperator UnaryOperator {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual BoxedExpression UnaryArgument
-		{
+		public virtual BoxedExpression UnaryArgument {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual bool IsBinary
-		{
+		public virtual bool IsBinary {
 			get { return false; }
 		}
 
-		public virtual BinaryOperator BinaryOperator
-		{
+		public virtual BinaryOperator BinaryOperator {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual BoxedExpression BinaryLeftArgument
-		{
+		public virtual BoxedExpression BinaryLeftArgument {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual BoxedExpression BinaryRightArgument
-		{
+		public virtual BoxedExpression BinaryRightArgument {
 			get { throw new InvalidOperationException (); }
 		}
 
-		public virtual bool IsIsinst
-		{
+		public virtual bool IsIsinst {
 			get { return false; }
 		}
 
-		public virtual bool IsNull
-		{
+		public virtual bool IsNull {
 			get { return false; }
 		}
 
-		public virtual bool IsCast
-		{
+		public virtual bool IsCast {
 			get { return false; }
 		}
 
-		public virtual bool IsResult
-		{
+		public virtual bool IsResult {
 			get { return false; }
 		}
 
@@ -240,13 +220,14 @@ namespace Mono.CodeContracts.Static.Proving
 			return new BinaryExpression (bop, Convert (left, decoder), Convert (right, decoder));
 		}
 		
-		public static BoxedExpression Binary(BinaryOperator op, BoxedExpression left, BoxedExpression right, object frameworkVar = null)
-	    {
-	      return (BoxedExpression) new BoxedExpression.BinaryExpression(op, left, right, frameworkVar);
-	    }
+		public static BoxedExpression Binary (BinaryOperator op, BoxedExpression left, BoxedExpression right, object frameworkVar = null)
+		{
+			return (BoxedExpression)new BoxedExpression.BinaryExpression (op, left, right, frameworkVar);
+		}
 
 		#region Nested type: AssertExpression
-		public class AssertExpression : ContractExpression {
+		public class AssertExpression : ContractExpression
+		{
 			public AssertExpression (BoxedExpression condition, EdgeTag tag, APC pc) : base (condition, tag, pc)
 			{
 			}
@@ -272,7 +253,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: AssumeExpression
-		public class AssumeExpression : ContractExpression {
+		public class AssumeExpression : ContractExpression
+		{
 			public AssumeExpression (BoxedExpression condition, EdgeTag tag, APC pc)
 				: base (condition, tag, pc)
 			{
@@ -299,7 +281,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: BinaryExpression
-		public class BinaryExpression : BoxedExpression {
+		public class BinaryExpression : BoxedExpression
+		{
 			public readonly BoxedExpression Left;
 			public readonly BinaryOperator Op;
 			public readonly BoxedExpression Right;
@@ -311,23 +294,19 @@ namespace Mono.CodeContracts.Static.Proving
 				this.Right = right;
 			}
 
-			public override bool IsBinary
-			{
+			public override bool IsBinary {
 				get { return true; }
 			}
 
-			public override BoxedExpression BinaryLeftArgument
-			{
+			public override BoxedExpression BinaryLeftArgument {
 				get { return this.Left; }
 			}
 
-			public override BoxedExpression BinaryRightArgument
-			{
+			public override BoxedExpression BinaryRightArgument {
 				get { return this.Right; }
 			}
 
-			public override BinaryOperator BinaryOperator
-			{
+			public override BinaryOperator BinaryOperator {
 				get { return this.Op; }
 			}
 
@@ -380,7 +359,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: CastExpression
-		public class CastExpression : BoxedExpression {
+		public class CastExpression : BoxedExpression
+		{
 			public readonly TypeNode CastToType;
 			public readonly BoxedExpression Expr;
 
@@ -390,102 +370,81 @@ namespace Mono.CodeContracts.Static.Proving
 				this.Expr = expr;
 			}
 
-			public override bool IsCast
-			{
+			public override bool IsCast {
 				get { return true; }
 			}
 
-			public override PathElement[] AccessPath
-			{
+			public override PathElement[] AccessPath {
 				get { return this.Expr.AccessPath; }
 			}
 
-			public override BoxedExpression BinaryLeftArgument
-			{
+			public override BoxedExpression BinaryLeftArgument {
 				get { return this.Expr.BinaryLeftArgument; }
 			}
 
-			public override BoxedExpression BinaryRightArgument
-			{
+			public override BoxedExpression BinaryRightArgument {
 				get { return this.Expr.BinaryRightArgument; }
 			}
 
-			public override BinaryOperator BinaryOperator
-			{
+			public override BinaryOperator BinaryOperator {
 				get { return this.Expr.BinaryOperator; }
 			}
 
-			public override object Constant
-			{
+			public override object Constant {
 				get { return this.Expr.Constant; }
 			}
 
-			public override object ConstantType
-			{
+			public override object ConstantType {
 				get { return this.Expr.ConstantType; }
 			}
 
-			public override bool IsBinary
-			{
+			public override bool IsBinary {
 				get { return this.Expr.IsBinary; }
 			}
 
-			public override bool IsBooleanTyped
-			{
+			public override bool IsBooleanTyped {
 				get { return this.Expr.IsBooleanTyped; }
 			}
 
-			public override bool IsConstant
-			{
+			public override bool IsConstant {
 				get { return this.Expr.IsConstant; }
 			}
 
-
-			public override bool IsSizeof
-			{
+			public override bool IsSizeof {
 				get { return this.Expr.IsSizeof; }
 			}
 
-			public override bool IsNull
-			{
+			public override bool IsNull {
 				get { return this.Expr.IsNull; }
 			}
 
-			public override bool IsIsinst
-			{
+			public override bool IsIsinst {
 				get { return this.Expr.IsIsinst; }
 			}
 
-			public override bool IsResult
-			{
+			public override bool IsResult {
 				get { return this.Expr.IsResult; }
 			}
 
-			public override bool IsUnary
-			{
+			public override bool IsUnary {
 				get { return this.Expr.IsUnary; }
 			}
 
-			public override bool IsVariable
-			{
+			public override bool IsVariable {
 				get { return this.Expr.IsVariable; }
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
+			public override BoxedExpression UnaryArgument {
 				get { return this.Expr.UnaryArgument; }
 			}
 
-			public override UnaryOperator UnaryOperator
-			{
+			public override UnaryOperator UnaryOperator {
 				get { return this.Expr.UnaryOperator; }
 			}
 
-			public override object UnderlyingVariable
-			{
+			public override object UnderlyingVariable {
 				get { return this.Expr.UnderlyingVariable; }
 			}
-
 
 			public override void AddFreeVariables (HashSet<BoxedExpression> set)
 			{
@@ -525,7 +484,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: ConstantExpression
-		public class ConstantExpression : BoxedExpression {
+		public class ConstantExpression : BoxedExpression
+		{
 			public readonly TypeNode Type;
 			public readonly object Value;
 			private readonly bool is_boolean;
@@ -542,30 +502,24 @@ namespace Mono.CodeContracts.Static.Proving
 				this.is_boolean = isBoolean;
 			}
 
-			public override bool IsBooleanTyped
-			{
+			public override bool IsBooleanTyped {
 				get { return this.is_boolean; }
 			}
 
-			public override bool IsConstant
-			{
+			public override bool IsConstant {
 				get { return true; }
 			}
 
-			public override object Constant
-			{
+			public override object Constant {
 				get { return this.Value; }
 			}
 
-			public override object ConstantType
-			{
+			public override object ConstantType {
 				get { return this.Type; }
 			}
 
-			public override bool IsNull
-			{
-				get
-				{
+			public override bool IsNull {
+				get {
 					if (this.Value == null)
 						return true;
 
@@ -603,7 +557,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: ContractExpression
-		public abstract class ContractExpression : BoxedExpression {
+		public abstract class ContractExpression : BoxedExpression
+		{
 			public readonly APC Apc;
 			public readonly BoxedExpression Condition;
 			public readonly EdgeTag Tag;
@@ -621,17 +576,18 @@ namespace Mono.CodeContracts.Static.Proving
 			}
 
 			public abstract override Result ForwardDecode<Data, Result, Visitor> (PC pc, Visitor visitor, Data data);
+
 			public abstract override BoxedExpression Substitute<Variable> (Func<Variable, BoxedExpression, BoxedExpression> map);
 		}
 		#endregion
 
 		#region Nested type: ExternalBox
 		public class ExternalBox<Variable, LabeledSymbol> : BoxedExpression
-			where LabeledSymbol : IEquatable<LabeledSymbol> {
+			where LabeledSymbol : IEquatable<LabeledSymbol>
+		{
 			private readonly IFullExpressionDecoder<Variable, LabeledSymbol> decoder;
 			private readonly LabeledSymbol expr;
 			private Optional<Tuple<bool, BinaryOperator, BoxedExpression, BoxedExpression>> binary;
-
 			private Optional<Tuple<bool, object, TypeNode>> constant;
 			private Optional<Tuple<bool, BoxedExpression, TypeNode>> isInst;
 			private Optional<Pair<bool, object>> isVar;
@@ -645,20 +601,16 @@ namespace Mono.CodeContracts.Static.Proving
 				this.decoder = decoder;
 			}
 
-			public override bool IsBinary
-			{
-				get
-				{
+			public override bool IsBinary {
+				get {
 					Tuple<bool, BinaryOperator, BoxedExpression, BoxedExpression> binary;
 					TryGetBinaryFromCache (out binary);
 					return binary.Item1;
 				}
 			}
 
-			public override BinaryOperator BinaryOperator
-			{
-				get
-				{
+			public override BinaryOperator BinaryOperator {
+				get {
 					Tuple<bool, BinaryOperator, BoxedExpression, BoxedExpression> binary;
 					bool res = TryGetBinaryFromCache (out binary);
 					if (!res)
@@ -668,10 +620,8 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override BoxedExpression BinaryLeftArgument
-			{
-				get
-				{
+			public override BoxedExpression BinaryLeftArgument {
+				get {
 					Tuple<bool, BinaryOperator, BoxedExpression, BoxedExpression> binary;
 					bool res = TryGetBinaryFromCache (out binary);
 					if (!res)
@@ -681,10 +631,8 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override BoxedExpression BinaryRightArgument
-			{
-				get
-				{
+			public override BoxedExpression BinaryRightArgument {
+				get {
 					Tuple<bool, BinaryOperator, BoxedExpression, BoxedExpression> binary;
 					bool res = TryGetBinaryFromCache (out binary);
 					if (!res)
@@ -694,10 +642,8 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override bool IsConstant
-			{
-				get
-				{
+			public override bool IsConstant {
+				get {
 					Tuple<bool, object, TypeNode> consta;
 					TryGetConstantFromCache (out consta);
 
@@ -705,10 +651,8 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override object Constant
-			{
-				get
-				{
+			public override object Constant {
+				get {
 					Tuple<bool, object, TypeNode> consta;
 					if (!TryGetConstantFromCache (out consta))
 						throw new InvalidOperationException ();
@@ -717,58 +661,47 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override object ConstantType
-			{
-				get
-				{
+			public override object ConstantType {
+				get {
 					Tuple<bool, object, TypeNode> consta;
 					if (!TryGetConstantFromCache (out consta))
-						throw new InvalidOperationException();
+						throw new InvalidOperationException ();
 
 					return consta.Item3;
 				}
 			}
 
-			public override bool IsIsinst
-			{
-				get
-				{
+			public override bool IsIsinst {
+				get {
 					Tuple<bool, BoxedExpression, TypeNode> isinst;
 					TryGetIsInstFromCache (out isinst);
 					return isinst.Item1;
 				}
 			}
 
-			public override bool IsNull
-			{
+			public override bool IsNull {
 				get { return this.decoder.IsNull (this.expr); }
 			}
 
-			public override bool IsUnary
-			{
-				get
-				{
+			public override bool IsUnary {
+				get {
 					Tuple<bool, UnaryOperator, BoxedExpression> unary;
 					TryGetUnaryFromCache (out unary);
 					return unary.Item1;
 				}
 			}
 
-			public override UnaryOperator UnaryOperator
-			{
-				get
-				{
+			public override UnaryOperator UnaryOperator {
+				get {
 					Tuple<bool, UnaryOperator, BoxedExpression> unary;
 					if (!TryGetUnaryFromCache (out unary))
-						throw new InvalidOperationException();
+						throw new InvalidOperationException ();
 					return unary.Item2;
 				}
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
-				get
-				{
+			public override BoxedExpression UnaryArgument {
+				get {
 					Tuple<bool, UnaryOperator, BoxedExpression> unary;
 					if (!TryGetUnaryFromCache (out unary))
 						throw new InvalidOperationException ();
@@ -776,29 +709,23 @@ namespace Mono.CodeContracts.Static.Proving
 				}
 			}
 
-			public override bool IsSizeof
-			{
-				get
-				{
+			public override bool IsSizeof {
+				get {
 					TypeNode type;
 					return this.decoder.IsSizeof (this.expr, out type);
 				}
 			}
 
-			public override bool IsVariable
-			{
-				get
-				{
+			public override bool IsVariable {
+				get {
 					Pair<bool, object> var1;
 					TryGetIsVariableFromCache (out var1);
 					return var1.Key;
 				}
 			}
 
-			public override object UnderlyingVariable
-			{
-				get
-				{
+			public override object UnderlyingVariable {
+				get {
 					if (!this.var.IsValid)
 						this.var = this.decoder.UnderlyingVariable (this.expr);
 
@@ -995,7 +922,8 @@ namespace Mono.CodeContracts.Static.Proving
 			}
 
 			#region Nested type: SetWrapper
-			private struct SetWrapper : ISet<LabeledSymbol>, IEnumerable<LabeledSymbol> {
+			private struct SetWrapper : ISet<LabeledSymbol>, IEnumerable<LabeledSymbol>
+			{
 				private readonly IFullExpressionDecoder<Variable, LabeledSymbol> decoder;
 				private readonly HashSet<BoxedExpression> set;
 
@@ -1079,7 +1007,6 @@ namespace Mono.CodeContracts.Static.Proving
 					throw new NotImplementedException ();
 				}
 
-
 				public void Clear ()
 				{
 					throw new NotImplementedException ();
@@ -1100,23 +1027,22 @@ namespace Mono.CodeContracts.Static.Proving
 					throw new NotImplementedException ();
 				}
 
-				public int Count
-				{
+				public int Count {
 					get { throw new NotImplementedException (); }
 				}
 
-				public bool IsReadOnly
-				{
+				public bool IsReadOnly {
 					get { throw new NotImplementedException (); }
 				}
 				#endregion
 			}
 			#endregion
-			}
+		}
 		#endregion
 
 		#region Nested type: IsinstExpression
-		public class IsinstExpression : BoxedExpression {
+		public class IsinstExpression : BoxedExpression
+		{
 			private readonly BoxedExpression arg;
 			private readonly TypeNode type;
 
@@ -1126,13 +1052,11 @@ namespace Mono.CodeContracts.Static.Proving
 				this.type = type;
 			}
 
-			public override bool IsIsinst
-			{
+			public override bool IsIsinst {
 				get { return true; }
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
+			public override BoxedExpression UnaryArgument {
 				get { return this.arg; }
 			}
 
@@ -1160,9 +1084,9 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: OldExpression
-		public class OldExpression : BoxedExpression {
+		public class OldExpression : BoxedExpression
+		{
 			private const string ContractOldValueTemplate = "Contract.OldValue({0})";
-
 			public readonly BoxedExpression Old;
 			public readonly TypeNode Type;
 
@@ -1210,90 +1134,75 @@ namespace Mono.CodeContracts.Static.Proving
 			}
 			#endregion
 
-			public override PathElement[] AccessPath
-			{
+			public override PathElement[] AccessPath {
 				get { return this.Old.AccessPath; }
 			}
 
-			public override BoxedExpression BinaryLeftArgument
-			{
+			public override BoxedExpression BinaryLeftArgument {
 				get { return this.Old.BinaryLeftArgument; }
 			}
 
-			public override BoxedExpression BinaryRightArgument
-			{
+			public override BoxedExpression BinaryRightArgument {
 				get { return this.Old.BinaryRightArgument; }
 			}
 
-			public override BinaryOperator BinaryOperator
-			{
+			public override BinaryOperator BinaryOperator {
 				get { return this.Old.BinaryOperator; }
 			}
 
-			public override object Constant
-			{
+			public override object Constant {
 				get { return this.Old.Constant; }
 			}
 
-			public override object ConstantType
-			{
+			public override object ConstantType {
 				get { return this.Old.ConstantType; }
 			}
 
-			public override bool IsBinary
-			{
+			public override bool IsBinary {
 				get { return this.Old.IsBinary; }
 			}
 
-			public override bool IsConstant
-			{
+			public override bool IsConstant {
 				get { return this.Old.IsConstant; }
 			}
 
-			public override bool IsSizeof
-			{
+			public override bool IsSizeof {
 				get { return this.Old.IsSizeof; }
 			}
 
-			public override bool IsNull
-			{
+			public override bool IsNull {
 				get { return this.Old.IsNull; }
 			}
 
-			public override bool IsIsinst
-			{
+			public override bool IsIsinst {
 				get { return this.Old.IsIsinst; }
 			}
 
-			public override bool IsUnary
-			{
+			public override bool IsUnary {
 				get { return this.Old.IsUnary; }
 			}
 
-			public override bool IsVariable
-			{
+			public override bool IsVariable {
 				get { return this.Old.IsVariable; }
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
+			public override BoxedExpression UnaryArgument {
 				get { return this.Old.UnaryArgument; }
 			}
 
-			public override UnaryOperator UnaryOperator
-			{
+			public override UnaryOperator UnaryOperator {
 				get { return this.Old.UnaryOperator; }
 			}
 
-			public override object UnderlyingVariable
-			{
+			public override object UnderlyingVariable {
 				get { return this.Old.UnderlyingVariable; }
 			}
 		}
 		#endregion
 
 		#region Nested type: PC
-		public struct PC {
+		public struct PC
+		{
 			public readonly int Index;
 			public readonly BoxedExpression Node;
 
@@ -1306,9 +1215,9 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: ResultExpression
-		public class ResultExpression : BoxedExpression {
+		public class ResultExpression : BoxedExpression
+		{
 			private const string ContractResultTemplate = "Contract.Result<{0}>()";
-
 			public readonly TypeNode Type;
 
 			public ResultExpression (TypeNode type)
@@ -1316,8 +1225,7 @@ namespace Mono.CodeContracts.Static.Proving
 				this.Type = type;
 			}
 
-			public override bool IsResult
-			{
+			public override bool IsResult {
 				get { return true; }
 			}
 
@@ -1338,7 +1246,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: SizeOfExpression
-		public class SizeOfExpression : BoxedExpression {
+		public class SizeOfExpression : BoxedExpression
+		{
 			public readonly int SizeAsConstant;
 			public readonly TypeNode Type;
 
@@ -1353,8 +1262,7 @@ namespace Mono.CodeContracts.Static.Proving
 			{
 			}
 
-			public override bool IsSizeof
-			{
+			public override bool IsSizeof {
 				get { return true; }
 			}
 
@@ -1375,7 +1283,8 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: UnaryExpression
-		public class UnaryExpression : BoxedExpression {
+		public class UnaryExpression : BoxedExpression
+		{
 			public readonly BoxedExpression Argument;
 			public readonly UnaryOperator Op;
 
@@ -1385,18 +1294,15 @@ namespace Mono.CodeContracts.Static.Proving
 				this.Argument = argument;
 			}
 
-			public override bool IsUnary
-			{
+			public override bool IsUnary {
 				get { return true; }
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
+			public override BoxedExpression UnaryArgument {
 				get { return this.Argument; }
 			}
 
-			public override UnaryOperator UnaryOperator
-			{
+			public override UnaryOperator UnaryOperator {
 				get { return this.Op; }
 			}
 
@@ -1456,9 +1362,9 @@ namespace Mono.CodeContracts.Static.Proving
 		#endregion
 
 		#region Nested type: ValueAtReturnExpression
-		public class ValueAtReturnExpression : BoxedExpression {
+		public class ValueAtReturnExpression : BoxedExpression
+		{
 			private const string ContractValueAtReturnTemplate = "Contract.ValueAtReturn({0})";
-
 			public readonly TypeNode Type;
 			public readonly BoxedExpression Value;
 
@@ -1506,90 +1412,75 @@ namespace Mono.CodeContracts.Static.Proving
 			}
 			#endregion
 
-			public override PathElement[] AccessPath
-			{
+			public override PathElement[] AccessPath {
 				get { return this.Value.AccessPath; }
 			}
 
-			public override BoxedExpression BinaryLeftArgument
-			{
+			public override BoxedExpression BinaryLeftArgument {
 				get { return this.Value.BinaryLeftArgument; }
 			}
 
-			public override BoxedExpression BinaryRightArgument
-			{
+			public override BoxedExpression BinaryRightArgument {
 				get { return this.Value.BinaryRightArgument; }
 			}
 
-			public override BinaryOperator BinaryOperator
-			{
+			public override BinaryOperator BinaryOperator {
 				get { return this.Value.BinaryOperator; }
 			}
 
-			public override object Constant
-			{
+			public override object Constant {
 				get { return this.Value.Constant; }
 			}
 
-			public override object ConstantType
-			{
+			public override object ConstantType {
 				get { return this.Value.ConstantType; }
 			}
 
-			public override bool IsBinary
-			{
+			public override bool IsBinary {
 				get { return this.Value.IsBinary; }
 			}
 
-			public override bool IsConstant
-			{
+			public override bool IsConstant {
 				get { return this.Value.IsConstant; }
 			}
 
-			public override bool IsSizeof
-			{
+			public override bool IsSizeof {
 				get { return this.Value.IsSizeof; }
 			}
 
-			public override bool IsNull
-			{
+			public override bool IsNull {
 				get { return this.Value.IsNull; }
 			}
 
-			public override bool IsIsinst
-			{
+			public override bool IsIsinst {
 				get { return this.Value.IsIsinst; }
 			}
 
-			public override bool IsUnary
-			{
+			public override bool IsUnary {
 				get { return this.Value.IsUnary; }
 			}
 
-			public override bool IsVariable
-			{
+			public override bool IsVariable {
 				get { return this.Value.IsVariable; }
 			}
 
-			public override BoxedExpression UnaryArgument
-			{
+			public override BoxedExpression UnaryArgument {
 				get { return this.Value.UnaryArgument; }
 			}
 
-			public override UnaryOperator UnaryOperator
-			{
+			public override UnaryOperator UnaryOperator {
 				get { return this.Value.UnaryOperator; }
 			}
 
-			public override object UnderlyingVariable
-			{
+			public override object UnderlyingVariable {
 				get { return this.Value.UnderlyingVariable; }
 			}
 		}
 		#endregion
 
 		#region Nested type: VariableExpression
-		public class VariableExpression : BoxedExpression {
+		public class VariableExpression : BoxedExpression
+		{
 			private readonly PathElement[] Path;
 			private readonly object UnderlyingVar;
 			public readonly object VarType;
@@ -1623,23 +1514,19 @@ namespace Mono.CodeContracts.Static.Proving
 				this.VarType = type;
 			}
 
-			public override bool IsVariable
-			{
+			public override bool IsVariable {
 				get { return true; }
 			}
 
-			public override object UnderlyingVariable
-			{
+			public override object UnderlyingVariable {
 				get { return this.UnderlyingVar; }
 			}
 
-			public override PathElement[] AccessPath
-			{
+			public override PathElement[] AccessPath {
 				get { return this.Path; }
 			}
 
-			public override bool IsBooleanTyped
-			{
+			public override bool IsBooleanTyped {
 				get { return this.Path != null && this.Path [this.Path.Length - 1].IsBooleanTyped; }
 			}
 
@@ -1688,12 +1575,28 @@ namespace Mono.CodeContracts.Static.Proving
 			{
 				if (!(this.UnderlyingVar is Variable))
 					return this;
-				var variable = ((Variable) this.UnderlyingVar);
+				var variable = ((Variable)this.UnderlyingVar);
 				return map (variable, this);
 			}
 		}
 		#endregion
-		
-		public abstract void Dispatch(IBoxedExpressionController controller);
+
+		public static bool SimpleSyntacticEquality (BoxedExpression left, BoxedExpression right)
+		{
+			if (left == null || right == null)
+				return left == right;
+			if (left.Equals ((object)right))
+				return true;
+
+			BinaryOperator binaryOp_1, binaryOp_2, inverted;
+			BoxedExpression left_1, left_2, right_1, right_2;
+
+			if (left.IsBinaryExpression (out  binaryOp_1, out left_1, out right_1) && BinaryOperatorExtensions.IsComparisonBinaryOperator (binaryOp_1) && (right.IsBinaryExpression (out binaryOp_2, out left_2, out right_2) && BinaryOperatorExtensions.IsComparisonBinaryOperator (binaryOp_2)) && (BinaryOperatorExtensions.TryInvert (binaryOp_2, out inverted) && binaryOp_1 == inverted && BoxedExpression.SimpleSyntacticEquality (left_1, right_2)))
+				return BoxedExpression.SimpleSyntacticEquality (right_1, left_2);
+			else
+				return false;
+		}
+
+		public abstract void Dispatch (IBoxedExpressionController controller);
 	}
 }

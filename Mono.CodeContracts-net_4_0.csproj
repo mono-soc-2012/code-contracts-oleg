@@ -367,6 +367,19 @@
     <Compile Include="Mono.CodeContracts.Static.Inference\OverflowVisitorBase.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\OverflowVisitor.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\UnderflowVisitor.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionDB.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving\ProofOutcome.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving\ProofObligation.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\Interface\ICodeFix.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\CodeFixKind.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving\MinimalProofObligation.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\DictionaryExtensions.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\ArrayExtensions.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\Interface\IInferredPrecond.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Expressions\ExpressionInPreStateKind.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Expressions\InferredExpr.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\InferredPreconditions.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\SimpleInferredPrecondition.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
