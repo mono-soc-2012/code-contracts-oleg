@@ -354,7 +354,6 @@
     <Compile Include="Mono.CodeContracts.Static.Analysis\PathElement.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis\UnaryOperations.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\OverflowExpression.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Inference\Interface\IBoxedExpressionController.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis\BinaryOperatorExtensions.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis\BinaryOperator.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\IFactForOverflow.cs" />
@@ -370,16 +369,40 @@
     <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionDB.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\ProofOutcome.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\ProofObligation.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Inference\Interface\ICodeFix.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\CodeFixKind.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\MinimalProofObligation.cs" />
     <Compile Include="Mono.CodeContracts.Static.DataStructures\DictionaryExtensions.cs" />
     <Compile Include="Mono.CodeContracts.Static.DataStructures\ArrayExtensions.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Inference\Interface\IInferredPrecond.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Expressions\ExpressionInPreStateKind.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Expressions\InferredExpr.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\InferredPreconditions.cs" />
     <Compile Include="Mono.CodeContracts.Static.Inference\SimpleInferredPrecondition.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\IBoxedExpressionController.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\ICodeFix.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\IInferredPrecond.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionInferenceMode.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionInferenceProfiler.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\IPreconditionInference.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\ICodeFixManager.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Providers\IDecodeMetaData.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Providers\IMethodCodeConsumer.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\ConcreteFloat.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\IntervalStruct.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\IOutput.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\IFrameworkLogOptions.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionInferenceManager.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference.Interface\IPreconditionDispatcher.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionInferenceCombined.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Inference\PreconditionInferenceBackwardSymbolic.cs" />
+    <Compile Include="Mono.CodeContracts.Static\TimeOutChecker.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\TimeoutExceptionFixpointComputation.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\IExpressionContextData.cs" />
+    <Compile Include="Mono.CodeContracts.Static.AST.Visitors\IVisitValueExprIL.cs" />
+    <Compile Include="Mono.CodeContracts.Static.AST.Visitors\IVisitExprIL.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\IFullExpressionDecoder.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\IMutableSet.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\IMutableSet.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\IReadonlySet.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -413,6 +436,6 @@
     <Folder Include="Properties\" />
     <Folder Include="Mono.CodeContracts.Static.Inference\" />
     <Folder Include="Mono.CodeContracts.Static.Analysis.Operators\" />
-    <Folder Include="Mono.CodeContracts.Static.Inference\Interface\" />
+    <Folder Include="Mono.CodeContracts.Static.Inference.Interface\" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 using System;
 using Mono.CodeContracts.Static.DataStrucures;
 
-namespace Mono.CodeContracts.Inference.Interface
+namespace Mono.CodeContracts.Static.Inference.Interface
 {
 	interface IBoxedExpressionController
 	{

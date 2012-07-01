@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mono.CodeContracts.Static.DataStructures\FList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mono.CodeContracts.Static.Inference\PreconditionInferenceProfiler.cs">
     <Files>
-      <File FileName="Mono.CodeContracts.Static.Proving\BoxedExpressionExtensions.cs" Line="32" Column="2" />
-      <File FileName="Mono.CodeContracts.Static.Inference\OverflowExpression.cs" Line="156" Column="31" />
-      <File FileName="Mono.CodeContracts.Static.Inference\Interface\IBoxedExpressionController.cs" Line="8" Column="49" />
-      <File FileName="Mono.CodeContracts.Static.Analysis\APC.cs" Line="10" Column="25" />
-      <File FileName="Mono.CodeContracts.Static.Analysis\Subroutin.cs" Line="18" Column="2" />
-      <File FileName="Mono.CodeContracts.Static.DataStructures\FList.cs" Line="60" Column="9" />
+      <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceMode.cs" Line="11" Column="4" />
+      <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceProfiler.cs" Line="48" Column="24" />
+      <File FileName="Mono.CodeContracts.Static.Inference.Interface\IPreconditionInference.cs" Line="6" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
