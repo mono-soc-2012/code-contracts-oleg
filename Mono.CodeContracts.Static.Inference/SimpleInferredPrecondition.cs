@@ -1,5 +1,7 @@
 using System;
 using Mono.CodeContracts.Static.Inference.Interface;
+using Mono.CodeContracts.Static.Proving;
+using Mono.CodeContracts.Static.Analysis.ExpressionAnalysis.Expressions;
 
 namespace Mono.CodeContracts.Static.Inference
 {

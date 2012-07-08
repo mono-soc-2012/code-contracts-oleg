@@ -134,7 +134,7 @@ namespace Mono.CodeContracts.Static.Inference
 		public IEnumerable<KeyValuePair<BoxedExpression, IEnumerable<MinimalProofObligation>>> GeneratePreconditions ()
 		{
 			if (this.preconditions == null)
-				this.preconditions = InferredPreconditionDB.RemoveCoveringPremises (this.ComputeMinimalWithSameUpperBound (InferredPreconditionDB.RemoveStrongerPremises (InferredPreconditionDB.ProjectExpressions (this.inferred))));
+				this.preconditions = PreconditionDB.RemoveCoveringPremises (this.ComputeMinimalWithSameUpperBound (PreconditionDB.RemoveStrongerPremises (PreconditionDB.ProjectExpressions (this.inferred))));
 			return Enumerable.Distinct<KeyValuePair<BoxedExpression, IEnumerable<MinimalProofObligation>>> (Enumerable.Select<KeyValuePair<BoxedExpression, List<ProofObligation>>, KeyValuePair<BoxedExpression, IEnumerable<MinimalProofObligation>>> ((IEnumerable<KeyValuePair<BoxedExpression, List<ProofObligation>>>)this.preconditions, (Func<KeyValuePair<BoxedExpression, List<ProofObligation>>, KeyValuePair<BoxedExpression, IEnumerable<MinimalProofObligation>>>)(p => new KeyValuePair<BoxedExpression, IEnumerable<MinimalProofObligation>> (p.Key, Enumerable.Select<ProofObligation, MinimalProofObligation> ((IEnumerable<ProofObligation>)p.Value, (Func<ProofObligation, MinimalProofObligation>)(obl => obl.MinimalProofObligation))))), BoxedExpression.EqualityPairComparer);
 		}
 		
@@ -142,9 +142,9 @@ namespace Mono.CodeContracts.Static.Inference
 		{
 			Dictionary<BoxedExpression, List<ProofObligation>> dictionary = new Dictionary<BoxedExpression, List<ProofObligation>> ();
 			foreach (KeyValuePair<BoxedExpression, List<ProofObligation>> pair in inferred) {
-				BinaryOperator binryOp;
+				BinaryOperator binaryOp;
 				BoxedExpression _left, _right;
-				if (pair.Key.IsBinaryExpression (out binryOp, out _left, out _right) && binaryOp == BinaryOperator.LogicalOr) {
+				if (pair.Key.IsBinaryExpression (out binaryOp, out _left, out _right) && binaryOp == BinaryOperator.LogicalOr) {
 					if (inferred.ContainsKey (_right)) {
 						List<ProofObligation> list;
 						if (dictionary.TryGetValue (_right, out list) || inferred.TryGetValue (_right, out list)) {
@@ -176,7 +176,7 @@ namespace Mono.CodeContracts.Static.Inference
 			BinaryOperator binaryOp_1, binaryOp_2;
 			BoxedExpression left_1, left_2, right_1, right_2;
 			if (!condition.IsBinaryExpression (out binaryOp_1, out left_1, out right_1) || 
-				!premise.IsBinaryExpression (out binryOp_2, out left_2, out right_2) || 
+				!premise.IsBinaryExpression (out binaryOp_2, out left_2, out right_2) || 
 				binaryOp_2 != BinaryOperator.Ceq ||
 				(!left_1.Equals ((object)left_2)) ||
 				!right_1.Equals ((object)right_2) && 
@@ -264,7 +264,7 @@ namespace Mono.CodeContracts.Static.Inference
             				return false;
 					case PreconditionDB.ComparisonOutputType.GreaterEqual:
             				right = left;
-            				minIndex = index;
+            				minIndex = i;
             				break;
 				}
 			}

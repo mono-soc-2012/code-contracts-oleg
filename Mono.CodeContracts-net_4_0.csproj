@@ -336,7 +336,6 @@
     <Compile Include="Mono.CodeContracts.Static.Providers\IMetaDataProvider.cs" />
     <Compile Include="Mono.CodeContracts.Static.Providers\IMethodCodeProvider.cs" />
     <Compile Include="Mono.CodeContracts.Static.Providers\MetaDataProvider.cs" />
-    <Compile Include="Mono.CodeContracts.Static.Proving\AssertionFinder.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\BasicFacts.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\BoxedExpression.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving\BoxedExpressionExtensions.cs" />
@@ -403,6 +402,22 @@
     <Compile Include="Mono.CodeContracts.Static.Analysis\IMutableSet.cs" />
     <Compile Include="Mono.CodeContracts.Static.DataStructures\IMutableSet.cs" />
     <Compile Include="Mono.CodeContracts.Static.DataStructures\IReadonlySet.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\AssertExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\BinaryExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\CastExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ContractExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\IsinstExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\OldExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ResultExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\SizeOfExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\UnaryExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ValueAtReturnExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\VariableExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\AssumeExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\PC.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ExternalBox.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ConstantExpression.cs" />
+    <Compile Include="Mono.CodeContracts.Static.DataStructures\Set.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -437,5 +452,6 @@
     <Folder Include="Mono.CodeContracts.Static.Inference\" />
     <Folder Include="Mono.CodeContracts.Static.Analysis.Operators\" />
     <Folder Include="Mono.CodeContracts.Static.Inference.Interface\" />
+    <Folder Include="Mono.CodeContracts.Static.Proving.BoxedExpression\" />
   </ItemGroup>
 </Project>

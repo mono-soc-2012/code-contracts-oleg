@@ -1,5 +1,5 @@
 using System;
-using Mono.CodeContracts.Inference.Interface;
+using Mono.CodeContracts.Static.Inference.Interface;
 using Mono.CodeContracts.Static.ControlFlow;
 using Mono.CodeContracts.Static.Proving;
 using Mono.CodeContracts.Static.Analysis;
