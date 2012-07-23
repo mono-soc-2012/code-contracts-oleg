@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Mono.CodeContracts.Static.Inference.Interface;
+using Mono.CodeContracts.Static.Proving;
 
 namespace Mono.CodeContracts.Static.Inference
 {

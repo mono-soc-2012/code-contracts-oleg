@@ -1,11 +1,13 @@
 using System;
-using Mono.CodeContracts.Static.DataStrucures;
+using Mono.CodeContracts.Static.DataStructures;
+using Mono.CodeContracts.Static.Analysis;
+using Mono.CodeContracts.Static.Proving;
 
 namespace Mono.CodeContracts.Static.Inference.Interface
 {
 	interface IBoxedExpressionController
 	{
-		void Unary(UnaryOperator unaryOp,UnaryOperator arg, BoxedExpression source);
+		void Unary(UnaryOperator unaryOp, UnaryOperator arg, BoxedExpression source);
 		
 		void Binary(BinaryOperator binaryOp, BoxedExpression left, BoxedExpression right, BoxedExpression source);
 		

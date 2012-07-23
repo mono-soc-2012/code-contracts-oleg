@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Mono.CodeContracts.Static.Proving;
 using Mono.CodeContracts.Static.Inference.Interface;
 using Mono.CodeContracts.Static.Analysis;
@@ -41,7 +42,7 @@ namespace Mono.CodeContracts.Static.Inference
 
 		public static void NotifyCheckInferredRequiresResult(uint tops)
 		{
-			reconditionInferenceProfiler.totalMethodsWithNecessaryPreconditions += (int) tops == 0 ? 1 : 0;
+			PreconditionInferenceProfiler.totalMethodsWithNecessaryPreconditions += (int) tops == 0 ? 1 : 0;
 		}
 
 		public static void DumpStatistics(IOutput output)
