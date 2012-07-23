@@ -1,19 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Mono.CodeContracts.Static.Inference\PreconditionInferenceBackwardSymbolic.cs">
-    <Files>
-      <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceMode.cs" Line="14" Column="1" />
-      <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceManager.cs" Line="11" Column="47" />
-      <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceBackwardSymbolic.cs" Line="14" Column="52" />
-      <File FileName="Mono.CodeContracts.Static.Analysis.Drivers\IMethodDriver.cs" Line="64" Column="25" />
-      <File FileName="Mono.CodeContracts.Static.Analysis\IFullExpressionDecoder.cs" Line="44" Column="1" />
-    </Files>
-    <Pads>
-      <Pad Id="ClassPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
