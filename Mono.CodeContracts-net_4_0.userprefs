@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Mono.CodeContracts.Static.Inference\PreconditionInferenceBackwardSymbolic.cs">
     <Files>
       <File FileName="Mono.CodeContracts.Static.Inference\PreconditionInferenceMode.cs" Line="14" Column="1" />
@@ -11,6 +12,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+=======
+  <MonoDevelop.Ide.Workbench />
+>>>>>>> d8071b159a8101a4b4e452b20ee86fc453fe57d2
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
