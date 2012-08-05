@@ -418,6 +418,19 @@
     <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ExternalBox.cs" />
     <Compile Include="Mono.CodeContracts.Static.Proving.BoxedExpression\ConstantExpression.cs" />
     <Compile Include="Mono.CodeContracts.Static.DataStructures\Set.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\SwallowedBuckets.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis\ContractDensity.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis\MethodCache.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis\MethodModel.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\EnsuresCache.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\ModelEnsuresCache.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\RequiresCache.cs" />
+    <Compile Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\InvariantCache.cs" />
+    <Compile Include="Mono.CodeContracts.Static.ControlFlow.Blocks\SwitchCaseAssumeBlock.cs" />
+    <Compile Include="Mono.CodeContracts.Static.ControlFlow.Subroutines\CallingContractSubroutine.cs" />
+    <Compile Include="Mono.CodeContracts.Static.ControlFlow.Blocks\CommitScanState.cs" />
+    <Compile Include="Mono.CodeContracts.Static.ControlFlow.Subroutines\ModelEnsuresSubroutine.cs" />
+    <Compile Include="Mono.CodeContracts.Static.ControlFlow.Subroutines\InvariantSubroutine.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -453,5 +466,6 @@
     <Folder Include="Mono.CodeContracts.Static.Analysis.Operators\" />
     <Folder Include="Mono.CodeContracts.Static.Inference.Interface\" />
     <Folder Include="Mono.CodeContracts.Static.Proving.BoxedExpression\" />
+    <Folder Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\" />
   </ItemGroup>
 </Project>
