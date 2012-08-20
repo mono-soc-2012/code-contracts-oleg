@@ -36,42 +36,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="..\..\build\common\Consts.cs" />
-    <Compile Include="Assembly\AssemblyInfo.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\AssemblyRef.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\ConditionTextExtractor.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\ContractRequiresInfo.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\ContractsRuntime.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\Decompile.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\ExprGen.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\MethodInfo.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\PerformRewrite.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\Rewriter.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\RewriterOptions.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\RewriterResults.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite\TransformContractsVisitor.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprAdd.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprBinaryOpArithmetic.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprBinaryOpComparison.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprBinaryOp.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprBlock.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprBox.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprCall.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprCompareEqual.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprCompareGreaterThan.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprCompareLessThan.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprConv.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\Expr.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprLoadArg.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprLoadConstant.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprNop.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprReturn.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprSub.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\ExprType.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.Ast\Sn.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.AstVisitors\CompileVisitor.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.AstVisitors\ExprVisitor.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.AstVisitors\InstructionExtentVisitor.cs" />
-    <Compile Include="Mono.CodeContracts.Rewrite.AstVisitors\SourcePositionVisitor.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis.Drivers\AnalysisDriver.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis.Drivers\BasicAnalysisDriver.cs" />
     <Compile Include="Mono.CodeContracts.Static.Analysis.Drivers\BasicMethodDriver.cs" />
@@ -461,11 +425,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
-    <Folder Include="Mono.CodeContracts.Static.Inference\" />
     <Folder Include="Mono.CodeContracts.Static.Analysis.Operators\" />
-    <Folder Include="Mono.CodeContracts.Static.Inference.Interface\" />
-    <Folder Include="Mono.CodeContracts.Static.Proving.BoxedExpression\" />
-    <Folder Include="Mono.CodeContracts.Static.Analysis.HeapAnalysis.MethodCache\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
